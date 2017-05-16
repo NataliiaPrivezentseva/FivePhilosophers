@@ -10,15 +10,20 @@ public class DinnerForFive {
     public static void main(String[] args) {
         Fork[] fiveForks = createFiveForks();
         final Philosopher descartes = new Philosopher("Descartes", fiveForks[1], fiveForks[0],
-                ": I am eating therefor I exist.");
+                ": I am eating therefor I exist.",
+                50);
         final Philosopher kant = new Philosopher("Kant", fiveForks[2], fiveForks[1],
-                ": Two things awe me most, the starry sky above me and a big steak within me.");
+                ": Two things awe me most, the starry sky above me and a big steak within me.",
+                10);
         final Philosopher democritus = new Philosopher("Democritus", fiveForks[3], fiveForks[2],
-                ": It is greed to do all the eating but not to want to wait at all.");
+                ": It is greed to do all the eating but not to want to wait at all.",
+                70);
         final Philosopher sartre = new Philosopher("Sartre", fiveForks[4], fiveForks[3],
-                ": Hell is other eaters.");
+                ": Hell is other eaters.",
+                25);
         final Philosopher plato = new Philosopher("Plato", fiveForks[0], fiveForks[4],
-                ": We are twice armed if we fight with full stomach.");
+                ": We are twice armed if we fight with full stomach.",
+                37);
 
         new Thread(new EatLoop(descartes)).start();
         new Thread(new EatLoop(kant)).start();
@@ -44,7 +49,11 @@ public class DinnerForFive {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                philosopher.eat();
+                if (!philosopher.eat()){
+                    isRunning = false;
+                } else {
+                    isRunning = true;
+                }
             }
         }
     }
