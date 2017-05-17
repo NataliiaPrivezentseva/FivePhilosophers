@@ -5,8 +5,7 @@ class Philosopher {
     private final long maxTimeWithoutFood;
 
     private long timeCanWait;
-    private long waitingTime = 0;
-    private long currentTime;
+    private long timePoint = 0;
 
     private String message;
 
@@ -23,29 +22,28 @@ class Philosopher {
     }
 
     private void countTimeCanWait() {
-        if (waitingTime == 0) {
-            this.timeCanWait = maxTimeWithoutFood;
-            this.currentTime = System.currentTimeMillis();
-            this.waitingTime = 1;
+        if (timePoint == 0) {
+            timeCanWait = maxTimeWithoutFood;
+            timePoint = System.currentTimeMillis();
         } else {
             long currentTime = System.currentTimeMillis();
-            this.waitingTime = currentTime - this.currentTime;
-            this.timeCanWait = maxTimeWithoutFood - waitingTime;
+            timeCanWait = timeCanWait - (currentTime - timePoint);
+            timePoint = currentTime;
         }
-        this.timeCanWait = this.timeCanWait - waitingTime;
+
         if (this.timeCanWait > 0) {
-            System.out.println(this.getName() + ": I can wait " + this.timeCanWait);
+            System.out.println(getName() + ": I can wait " + timeCanWait);
         } else {
-            System.out.println(this.getName() + ": I can't wait anymore... I am starving.");
+            System.out.println(getName() + ": But I can't wait anymore... I am starving.");
         }
     }
 
 
     private boolean isDead() {
-        this.countTimeCanWait();
+        countTimeCanWait();
 
-        if (this.timeCanWait <= 0) {
-            System.out.println(this.getName() + ": DEAD!!!");
+        if (timeCanWait <= 0) {
+            System.out.println(getName() + ": DEAD!!!");
             return true;
         } else {
             return false;
@@ -66,8 +64,8 @@ class Philosopher {
     }
 
     boolean eat() {
-        if (this.canTakeForks()) {
-            System.out.println(this.getName() + message);
+        if (canTakeForks()) {
+            System.out.println(getName() + message);
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
@@ -77,9 +75,8 @@ class Philosopher {
             rightFork.putFork();
             return true;
         } else {
-            System.out.println(this.getName() + ": I cannot take two forks! I must wait!");
-            return !this.isDead();
+            System.out.println(getName() + ": I cannot take two forks! I must wait!");
+            return !isDead();
         }
     }
 }
-
