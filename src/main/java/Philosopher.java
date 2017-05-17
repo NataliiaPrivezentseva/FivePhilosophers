@@ -22,16 +22,22 @@ class Philosopher {
         return this.name;
     }
 
-    private void countTimeCanWait(){
+    private void countTimeCanWait() {
         if (waitingTime == 0) {
             this.timeCanWait = maxTimeWithoutFood;
             this.currentTime = System.currentTimeMillis();
+            this.waitingTime = 1;
         } else {
             long currentTime = System.currentTimeMillis();
             this.waitingTime = currentTime - this.currentTime;
             this.timeCanWait = maxTimeWithoutFood - waitingTime;
         }
         this.timeCanWait = this.timeCanWait - waitingTime;
+        if (this.timeCanWait > 0) {
+            System.out.println(this.getName() + ": I can wait " + this.timeCanWait);
+        } else {
+            System.out.println(this.getName() + ": I can't wait anymore... I am starving.");
+        }
     }
 
 
