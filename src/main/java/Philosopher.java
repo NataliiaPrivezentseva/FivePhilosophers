@@ -73,6 +73,7 @@ class Philosopher {
             }
             leftFork.putFork();
             rightFork.putFork();
+            timeCanWait = maxTimeWithoutFood;
             return true;
         } else {
             System.out.println(getName() + ": I cannot take two forks! I must wait!");
