@@ -1,8 +1,8 @@
 public class DinnerForFive {
 
     private static Fork[] createFiveForks() {
-        return new Fork[]{new Fork(1), new Fork(2), new Fork(3),
-                new Fork(4), new Fork(5)};
+        return new Fork[]{new Fork(), new Fork(), new Fork(),
+                new Fork(), new Fork()};
     }
 
     public static void main(String[] args) {
