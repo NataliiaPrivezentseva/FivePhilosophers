@@ -11,11 +11,7 @@ public class DinnerForFive {
     public static void main(String[] args) {
         Fork[] fiveForks = createFiveForks();
 
-        Locale.setDefault(Locale.ENGLISH);
-//        Locale[] supportedLocales = {
-//                new Locale("ru"),
-//                Locale.ENGLISH
-//        };
+//      Locale.setDefault(Locale.ENGLISH);
 
         Locale currentLocale = Locale.getDefault();
         ResourceBundle philosophersNames = ResourceBundle.getBundle("PhilosophersNamesBundle", currentLocale);
