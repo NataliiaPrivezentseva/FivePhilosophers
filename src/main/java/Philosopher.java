@@ -1,3 +1,6 @@
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 class Philosopher {
     private final String name;
     private final Fork leftFork;
@@ -7,13 +10,15 @@ class Philosopher {
     private long timeCanWait;
     private long timePoint = 0;
 
-    private String message;
+    private String speech;
+    private Locale currentLocale = Locale.getDefault();
+    private ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 
-    Philosopher(String name, Fork leftFork, Fork rightFork, String message, long maxTimeWithoutFood) {
+    Philosopher(String name, Fork leftFork, Fork rightFork, String speech, long maxTimeWithoutFood) {
         this.name = name;
         this.leftFork = leftFork;
         this.rightFork = rightFork;
-        this.message = message;
+        this.speech = speech;
         this.maxTimeWithoutFood = maxTimeWithoutFood;
     }
 
@@ -32,9 +37,9 @@ class Philosopher {
         }
 
         if (this.timeCanWait > 0) {
-            System.out.println(getName() + ": I can wait " + timeCanWait);
+            System.out.println(getName() + messages.getString("messageCanWait") + timeCanWait);
         } else {
-            System.out.println(getName() + ": But I can't wait anymore... I am starving.");
+            System.out.println(getName() + messages.getString("messageCannotWait"));
         }
     }
 
@@ -43,7 +48,7 @@ class Philosopher {
         countTimeCanWait();
 
         if (timeCanWait <= 0) {
-            System.out.println(getName() + ": DEAD!!!");
+            System.out.println(getName() + messages.getString("messageDead"));
             return true;
         } else {
             return false;
@@ -65,7 +70,7 @@ class Philosopher {
 
     boolean eat() {
         if (canTakeForks()) {
-            System.out.println(getName() + message);
+            System.out.println(getName() + speech);
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
@@ -76,7 +81,7 @@ class Philosopher {
             timeCanWait = maxTimeWithoutFood;
             return true;
         } else {
-            System.out.println(getName() + ": I cannot take two forks! I must wait!");
+            System.out.println(getName() + messages.getString("messageCannotTakeTwoForks"));
             return !isDead();
         }
     }
