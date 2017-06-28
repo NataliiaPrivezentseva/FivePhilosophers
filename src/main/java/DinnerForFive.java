@@ -17,22 +17,35 @@ public class DinnerForFive {
         ResourceBundle philosophersNames = ResourceBundle.getBundle("PhilosophersNamesBundle", currentLocale);
         ResourceBundle speeches = ResourceBundle.getBundle("SpeechesBundle", currentLocale);
 
+        PhilosopherBuilder firstPhilosopher = new PhilosopherBuilder();
+        firstPhilosopher.setName(philosophersNames.getString("nameDescartes")).setLeftFork(fiveForks[1])
+                .setRightFork(fiveForks[0]).setSpeech(speeches.getString("speechDescartes"))
+                .setMaxTimeWithoutFood(1000);
+        final Philosopher descartes = firstPhilosopher.build();
 
-        final Philosopher descartes = new Philosopher(philosophersNames.getString("nameDescartes"),
-                fiveForks[1], fiveForks[0], speeches.getString("speechDescartes"),
-                1000);
-        final Philosopher kant = new Philosopher(philosophersNames.getString("nameKant"),
-                fiveForks[2], fiveForks[1], speeches.getString("speechKant"),
-                2000);
-        final Philosopher democritus = new Philosopher(philosophersNames.getString("nameDemocritus"),
-                fiveForks[3], fiveForks[2], speeches.getString("speechDemocritus"),
-                1500);
-        final Philosopher sartre = new Philosopher(philosophersNames.getString("nameSartre"),
-                fiveForks[4], fiveForks[3], speeches.getString("speechSartre"),
-                2500);
-        final Philosopher plato = new Philosopher(philosophersNames.getString("namePlato"),
-                fiveForks[0], fiveForks[4], speeches.getString("speechPlato"),
-                3000);
+        PhilosopherBuilder secondPhilosopher = new PhilosopherBuilder();
+        secondPhilosopher.setName(philosophersNames.getString("nameKant")).setLeftFork(fiveForks[2])
+                .setRightFork(fiveForks[1]).setSpeech(speeches.getString("speechKant"))
+                .setMaxTimeWithoutFood(2000);
+        final Philosopher kant = secondPhilosopher.build();
+
+        PhilosopherBuilder thirdPhilosopher = new PhilosopherBuilder();
+        thirdPhilosopher.setName(philosophersNames.getString("nameDemocritus")).setLeftFork(fiveForks[3])
+                .setRightFork(fiveForks[2]).setSpeech(speeches.getString("speechDemocritus"))
+                .setMaxTimeWithoutFood(1500);
+        final Philosopher democritus = thirdPhilosopher.build();
+
+        PhilosopherBuilder forthPhilosopher = new PhilosopherBuilder();
+        forthPhilosopher.setName(philosophersNames.getString("nameSartre")).setLeftFork(fiveForks[4])
+                .setRightFork(fiveForks[3]).setSpeech(speeches.getString("speechSartre"))
+                .setMaxTimeWithoutFood(2500);
+        final Philosopher sartre = forthPhilosopher.build();
+
+        PhilosopherBuilder fifthPhilosopher = new PhilosopherBuilder();
+        fifthPhilosopher.setName(philosophersNames.getString("namePlato")).setLeftFork(fiveForks[0])
+                .setRightFork(fiveForks[4]).setSpeech(speeches.getString("speechPlato"))
+                .setMaxTimeWithoutFood(3000);
+        final Philosopher plato = fifthPhilosopher.build();
 
         new Thread(new EatLoop(descartes)).start();
         new Thread(new EatLoop(kant)).start();
