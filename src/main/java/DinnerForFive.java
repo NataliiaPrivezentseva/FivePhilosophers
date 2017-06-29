@@ -17,35 +17,45 @@ public class DinnerForFive {
         ResourceBundle philosophersNames = ResourceBundle.getBundle("PhilosophersNamesBundle", currentLocale);
         ResourceBundle speeches = ResourceBundle.getBundle("SpeechesBundle", currentLocale);
 
-        PhilosopherBuilder firstPhilosopher = new PhilosopherBuilder();
-        firstPhilosopher.setName(philosophersNames.getString("nameDescartes")).setLeftFork(fiveForks[1])
-                .setRightFork(fiveForks[0]).setSpeech(speeches.getString("speechDescartes"))
-                .setMaxTimeWithoutFood(1000);
-        final Philosopher descartes = firstPhilosopher.build();
+        final Philosopher descartes = new PhilosopherBuilder()
+                .withName(philosophersNames.getString("nameDescartes"))
+                .withLeftFork(fiveForks[1])
+                .withRightFork(fiveForks[0])
+                .withSpeech(speeches.getString("speechDescartes"))
+                .withMaxTimeWithoutFood(1000)
+                .build();
 
-        PhilosopherBuilder secondPhilosopher = new PhilosopherBuilder();
-        secondPhilosopher.setName(philosophersNames.getString("nameKant")).setLeftFork(fiveForks[2])
-                .setRightFork(fiveForks[1]).setSpeech(speeches.getString("speechKant"))
-                .setMaxTimeWithoutFood(2000);
-        final Philosopher kant = secondPhilosopher.build();
+        final Philosopher kant = new PhilosopherBuilder()
+                .withName(philosophersNames.getString("nameKant"))
+                .withLeftFork(fiveForks[2])
+                .withRightFork(fiveForks[1])
+                .withSpeech(speeches.getString("speechKant"))
+                .withMaxTimeWithoutFood(2000)
+                .build();
 
-        PhilosopherBuilder thirdPhilosopher = new PhilosopherBuilder();
-        thirdPhilosopher.setName(philosophersNames.getString("nameDemocritus")).setLeftFork(fiveForks[3])
-                .setRightFork(fiveForks[2]).setSpeech(speeches.getString("speechDemocritus"))
-                .setMaxTimeWithoutFood(1500);
-        final Philosopher democritus = thirdPhilosopher.build();
+        final Philosopher democritus = new PhilosopherBuilder()
+                .withName(philosophersNames.getString("nameDemocritus"))
+                .withLeftFork(fiveForks[3])
+                .withRightFork(fiveForks[2])
+                .withSpeech(speeches.getString("speechDemocritus"))
+                .withMaxTimeWithoutFood(1500)
+                .build();
 
-        PhilosopherBuilder forthPhilosopher = new PhilosopherBuilder();
-        forthPhilosopher.setName(philosophersNames.getString("nameSartre")).setLeftFork(fiveForks[4])
-                .setRightFork(fiveForks[3]).setSpeech(speeches.getString("speechSartre"))
-                .setMaxTimeWithoutFood(2500);
-        final Philosopher sartre = forthPhilosopher.build();
+        final Philosopher sartre = new PhilosopherBuilder()
+                .withName(philosophersNames.getString("nameSartre"))
+                .withLeftFork(fiveForks[4])
+                .withRightFork(fiveForks[3])
+                .withSpeech(speeches.getString("speechSartre"))
+                .withMaxTimeWithoutFood(2500)
+                .build();
 
-        PhilosopherBuilder fifthPhilosopher = new PhilosopherBuilder();
-        fifthPhilosopher.setName(philosophersNames.getString("namePlato")).setLeftFork(fiveForks[0])
-                .setRightFork(fiveForks[4]).setSpeech(speeches.getString("speechPlato"))
-                .setMaxTimeWithoutFood(3000);
-        final Philosopher plato = fifthPhilosopher.build();
+        final Philosopher plato = new PhilosopherBuilder()
+                .withName(philosophersNames.getString("namePlato"))
+                .withLeftFork(fiveForks[0])
+                .withRightFork(fiveForks[4])
+                .withSpeech(speeches.getString("speechPlato"))
+                .withMaxTimeWithoutFood(3000)
+                .build();
 
         new Thread(new EatLoop(descartes)).start();
         new Thread(new EatLoop(kant)).start();

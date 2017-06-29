@@ -1,6 +1,3 @@
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 class PhilosopherBuilder {
     private String name;
     private Fork leftFork;
@@ -9,27 +6,27 @@ class PhilosopherBuilder {
 
     private String speech;
 
-   PhilosopherBuilder setName(String name){
+   PhilosopherBuilder withName(String name){
         this.name = name;
         return this;
     }
 
-    PhilosopherBuilder setLeftFork(Fork leftFork){
+    PhilosopherBuilder withLeftFork(Fork leftFork){
         this.leftFork = leftFork;
         return this;
     }
 
-    PhilosopherBuilder setRightFork(Fork rightFork){
+    PhilosopherBuilder withRightFork(Fork rightFork){
         this.rightFork = rightFork;
         return this;
     }
 
-    PhilosopherBuilder setSpeech(String speech){
+    PhilosopherBuilder withSpeech(String speech){
         this.speech = speech;
         return this;
     }
 
-    PhilosopherBuilder setMaxTimeWithoutFood(long maxTimeWithoutFood){
+    PhilosopherBuilder withMaxTimeWithoutFood(long maxTimeWithoutFood){
         this.maxTimeWithoutFood = maxTimeWithoutFood;
         return this;
     }
